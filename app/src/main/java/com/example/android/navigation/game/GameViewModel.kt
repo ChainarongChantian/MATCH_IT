@@ -14,16 +14,36 @@ import kotlin.concurrent.schedule
 
 class GameViewModel(var username: String, var gameScore: Int, var timeSpent: Int): ViewModel() {
 
-    //            Fruit(name = "box", nameToInt = 2131165288),
-    //            Fruit(name = "coconut", nameToInt = 2131165289),
-    //            Fruit(name = "passion_fruit", nameToInt = 2131165300),
-    //            Fruit(name = "pomegranate", nameToInt = 2131165301),
-    //            Fruit(name = "orange", nameToInt = 2131165299),
-    //            Fruit(name = "lime", nameToInt = 2131165295),
-    //            Fruit(name = "kiwi", nameToInt = 2131165292),
-    //            Fruit(name = "guava", nameToInt = 2131165291),
-    //            Fruit(name = "grapefruit", nameToInt = 2131165290),
+//    Fruit(name = "box", nameToInt = 2131165288),
+//    Fruit(name = "coconut", nameToInt = 2131165289),
+//    Fruit(name = "passion_fruit", nameToInt = 2131165300),
+//    Fruit(name = "pomegranate", nameToInt = 2131165301),
+//    Fruit(name = "orange", nameToInt = 2131165299),
+//    Fruit(name = "lime", nameToInt = 2131165295),
+//    Fruit(name = "kiwi", nameToInt = 2131165292),
+//    Fruit(name = "guava", nameToInt = 2131165291),
+//    Fruit(name = "grapefruit", nameToInt = 2131165290),
     var gameTimer: GameTimer
+
+    var fruitList= mutableListOf(
+            R.drawable.ic_coconut,
+            R.drawable.ic_grapefruit,
+            R.drawable.ic_guava,
+            R.drawable.ic_kiwi,
+            R.drawable.ic_lime,
+            R.drawable.ic_orange,
+            R.drawable.ic_pomegranate,
+            R.drawable.ic_passion_fruit,
+
+            R.drawable.ic_coconut,
+            R.drawable.ic_grapefruit,
+            R.drawable.ic_guava,
+            R.drawable.ic_kiwi,
+            R.drawable.ic_lime,
+            R.drawable.ic_orange,
+            R.drawable.ic_pomegranate,
+            R.drawable.ic_passion_fruit
+    )
 
     init {
 
@@ -35,6 +55,12 @@ class GameViewModel(var username: String, var gameScore: Int, var timeSpent: Int
 
         super.onCleared()
         Timber.i("GameViewModel destroyed!!")
+    }
+
+    fun resetList() {
+        fruitList.shuffle()
+        Timber.i("after shuffle: $fruitList")
+
     }
 
     fun calculateScore(periodChoose: Int) {

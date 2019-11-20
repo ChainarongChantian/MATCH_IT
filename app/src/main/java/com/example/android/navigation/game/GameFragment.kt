@@ -57,7 +57,6 @@ class GameFragment: Fragment() {
     private lateinit var binding: FragmentGameBinding
     private lateinit var viewModel: GameViewModel
     private lateinit var viewModelFactory: GameViewModelFactory
-    private lateinit var fruitList : MutableList<Int>
     private var firstFruit = -1
     private lateinit var firstFruitImg: View
     private var secondFruit = -1
@@ -84,7 +83,7 @@ class GameFragment: Fragment() {
         binding.gameViewModel = viewModel
 
         putDataToArray()
-        resetList()
+        viewModel.resetList()
 
         binding.box1.setOnClickListener {
             unpackBox(it)
@@ -159,37 +158,11 @@ class GameFragment: Fragment() {
         super.onStop()
     }
 
-    private fun resetList() {
-
-        fruitList = mutableListOf(
-                R.drawable.ic_coconut,
-                R.drawable.ic_grapefruit,
-                R.drawable.ic_guava,
-                R.drawable.ic_kiwi,
-                R.drawable.ic_lime,
-                R.drawable.ic_orange,
-                R.drawable.ic_pomegranate,
-                R.drawable.ic_passion_fruit,
-
-                R.drawable.ic_coconut,
-                R.drawable.ic_grapefruit,
-                R.drawable.ic_guava,
-                R.drawable.ic_kiwi,
-                R.drawable.ic_lime,
-                R.drawable.ic_orange,
-                R.drawable.ic_pomegranate,
-                R.drawable.ic_passion_fruit
-        )
-        fruitList.shuffle()
-        Timber.i("after shuffle: $fruitList")
-
-    }
-
     @SuppressLint("ResourceType")
     fun unpackBox(box: View) {
 
         val boxId: String = box.resources.getResourceName(box.id).split("/")[1]
-        val boxIdToListIndex = fruitList[boxId.substring(3, boxId.length).toInt()-1]
+        val boxIdToListIndex = viewModel.fruitList[boxId.substring(3, boxId.length).toInt()-1]
         box.tag = boxIdToListIndex
         (box as ImageButton).setImageResource( boxIdToListIndex)
 

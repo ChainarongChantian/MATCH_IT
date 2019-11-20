@@ -36,7 +36,6 @@ import timber.log.Timber
 class GameDoneFragment : Fragment() {
 
     private lateinit var viewModel: GameDoneViewModel
-    private lateinit var binding: FragmentGameDoneBinding
     private lateinit var viewModelFactory: GameDoneViewModelFactory
 
             override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,16 +51,17 @@ class GameDoneFragment : Fragment() {
                 inflater, R.layout.fragment_game_done, container, false)
 
         binding.playAgainButton.setOnClickListener { view ->
-
+            val actionGameDoneToGame = GameDoneFragmentDirections
+                    .actionGameDoneFragmentToGameFragment(args.username, 0, 0)
             view.findNavController()
-                    .navigate(GameDoneFragmentDirections
-                            .actionGameDoneFragmentToGameFragment(args.username, 0, 0))
+                    .navigate(actionGameDoneToGame)
         }
 
         binding.quitToMenuButton.setOnClickListener { view ->
+            val actionGameDoneToMenu = GameDoneFragmentDirections
+                    .actionGameDoneFragmentToMenuFragment()
             view.findNavController()
-                    .navigate(GameDoneFragmentDirections
-                            .actionGameDoneFragmentToMenuFragment())
+                    .navigate(actionGameDoneToMenu)
         }
 
 //        Toast.makeText(context, "onGameDoneFragment -> username: ${args.username}| gameScore: ${args.gameScore} | timeSpent: ${args.timeSpent}", Toast.LENGTH_LONG).show()

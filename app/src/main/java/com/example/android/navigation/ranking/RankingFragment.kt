@@ -45,8 +45,10 @@ class RankingFragment : Fragment() {
         })
 
         binding.backToMenu.setOnClickListener { view ->
+            val actionRankingToMenu = RankingFragmentDirections
+                    .actionRankingFragmentToMenuFragment()
             view.findNavController()
-                    .navigate(RankingFragmentDirections.actionRankingFragmentToMenuFragment())
+                    .navigate(actionRankingToMenu)
         }
 
         return binding.root
